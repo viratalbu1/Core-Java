@@ -1,0 +1,161 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List
+
+public class CSVReaderInJava {
+
+    public static void main(String... args) {
+        List<Email> Emails = readEmailsFromCSV("sample_email.csv");
+	for (Email b : Emails) {
+            System.out.println(b);
+        }
+    }
+
+ private static List<Email> readEmailsFromCSV(String fileName) {
+        List<Email> Emails = new ArrayList<>();
+        Path pathToFile = Paths.get(fileName);
+ 	try (BufferedReader br = Files.newBufferedReader(pathToFile,
+                StandardCharsets.US_ASCII)) {
+
+		String line = br.readLine();
+
+		while (line != null) {
+
+		String[] attributes = line.split(",");
+		Email Email = createEmail(attributes);
+		line = br.readLine();
+            }
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        return Emails;
+    }
+
+    private static Email createEmail(String[] metadata) {
+        String name = metadata[0];
+        int price = Integer.parseInt(metadata[1]);
+        String author = metadata[2];
+
+        // create and return Email of this metadata
+        return new Email(Name, Last name, Company,County,State,Zip,phone1,email,subject,email_boby);
+    }
+
+}
+
+class Email {
+    private String Name;
+    private int Last_name;
+    private String Company;
+    private String County;
+    private int Zip;
+    private int phone1 ;
+    private String State;
+    private String email; 
+    private String subject;
+    private String email_boby;
+    
+
+    public Email(String Name,String Last_name, String Company,String County,String State,int Zip,int phone1,String email, String subject,String email_boby  ) {
+        this.name = name;
+        this.Last_name = Last_name;
+        this.Company = Company;
+	this.County = County;
+        this.State = State;
+        this.Zip = Zip;
+	this.phone1=phone1;
+	this.email=email;
+	this.subject=subject;
+	this.email_boby =email_boby ;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
+    public int getLastName() {
+        return Last_name;
+    }
+
+    public void setLast_name(int Last_name) {
+        this.Last_name = Last_name;
+    }
+
+    public String getCompany() {
+        return Company;
+    }
+
+    public void setCompany(String Company) {
+        this.Company = Company;
+    }
+    public String getCounty() {
+        return County;
+    }
+
+    public void setCounty(String County) {
+        this.County = County;
+    }
+	public String getState() {
+        return State;
+    }
+
+    public void setState(String Company) {
+        this.State = State;
+    }
+	public int getZip() {
+        return Zip;
+    }
+
+    public void setZip(int Zip) {
+        this.Zip = Zip;
+    }
+	public int getphone1() {
+        return phone1;
+    }
+
+    public void setphone1(int phone1) {
+        this.phone1 = phone1;
+    }
+	public String getemail() {
+        return email;
+    }
+
+    public void setemail(String email) {
+        this.email = email;
+    }
+
+   public String getsubject() {
+        return subject;
+    }
+
+    public void setsubject(String subject) {
+        this.email = subject;
+    }
+   
+    public String getemail_boby() {
+        return email_boby;
+    }
+
+    public void setsubject(String email_boby) {
+        this.email_boby = email_boby;
+    }
+
+    @Override
+    public String toString() {
+        return "Email [name=" + Name + ", Last_name=" + Last_name + ", Company=" + Company+ ", County=" + County + ", State=" + State+ ", Zip=" + Zip + ", phone1=" + phone1+ ", email=" + email + ", subject=" + subject+ ", email_boby=" + email_boby+ "]";
+    }
+
+}
+
+
+
